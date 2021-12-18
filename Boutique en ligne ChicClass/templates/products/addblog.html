@@ -1,0 +1,29 @@
+{% extends 'index.html'%}
+{%block content%}
+{%include '_alertmsg.html'%}
+<div class="container">
+    <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-9">
+        <h2 class="text-center"> Ajouter un blog </h2>
+        {%from "_formhelpers.html" import render_field%}
+        <form action="" method="POST" enctype="multipart/form-data">
+
+            {{render_field(form.title, class="form-control", placeholder="Ajouter le titre du blog")}}
+            {{render_field(form.author, class="form-control", placeholder="Ajouter l'auteur du blog")}}
+            {{render_field(form.content, class="form-control", placeholder="Ajouter le contenu du blog")}}
+            {{render_field(form.text, class="form-control", placeholder="Ajouter le text du blog")}}
+        
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6"> {{render_field(form.image, class="form-control")}}</div>
+                </div>
+            </div>
+            <input type="submit" value="Ajoute blog" class="btn btn-info mt-2">
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+</div>
+{%endblock content%}

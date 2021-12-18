@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+{% block content%}
+{% include '_alertmsg.html'%}
+<div class="container">
+    <br>
+    <h2 class="text-center">Admin Register</h2>
+    <hr>
+    {% from "_formhelpers.html" import render_field %}
+
+<form method="post" enctype="multipart/form-data">
+  <div>
+    {{ render_field(form.name, class="form-control") }}
+    {{ render_field(form.username,class="form-control") }}
+    {{ render_field(form.email,class="form-control") }}
+    {{ render_field(form.password,class="form-control") }}
+    {{ render_field(form.confirm,class="form-control") }}
+
+  </div>
+  <p><input type='submit' value='Register' class="mt-2"></p>
+</form>
+</div>
+{% endblock content %}

@@ -1,0 +1,141 @@
+{% extends "page.html" %}
+{% block content%}
+{% include 'navbar.html' %}
+{% include '_alertmsg.html'%}
+
+<link rel="stylesheet" href="/static/css/blog.css">
+
+    <!--First slider-->
+    <div class="container-fluid">
+        <div class="site-slider ">
+            <div class="slider-one">
+                <div>
+                    <img src="/static/assets/slide1.jpg" alt="Banner 1">
+                </div>
+                <div>
+                    <img src="/static/assets/slide2.jpg" alt=" Banner 2">
+                </div>
+                
+                <div>
+                    <img src="/static/assets/slide4.jpg" alt="Banner 3">
+                </div>
+            </div>
+            <div class="slider-btn">
+                <span class='prev position-top'><i class="fas fa-chevron-left"></i></span>
+                <span class='next position-top right-0'><i class="fas fa-chevron-right"></i></span>
+            </div>
+        </div>
+    </div><br><br>
+    <!-- END First slider-->
+    <!--Second slider-->
+    <div class="container-fluid-two ">
+        <h2 class="title">Nouveau Produits</h2>
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active" >
+                  <div class="row-slide">
+                    {% for p in products%}
+                      <div class="col-3">
+                           <a href="/shop"><img src="{{url_for('static',filename='assets/'+ p.image)}}" class="d-block " alt="{{p.name}}"></a>
+                           <h4>{{ p.name }} {{p.colors}}</h4>
+                           <p>{{ p.price }} MAD</p>
+                      </div>  
+                      {%endfor%}  
+                  </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row-slide">
+                  {% for p in products%}
+                    <div class="col-3">
+                        <a href="/shop"> <img src="{{url_for('static',filename='assets/'+ p.image)}}" class="d-block " alt="{{p.name}}"></a>
+                         <h4>{{ p.name }} {{p.colors}}</h4>
+                         <p>{{ p.price }} MAD</p>
+                    </div>  
+                    {%endfor%}  
+                </div>
+            </div>
+            </div>
+           
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+    </div>
+<br><br><br>
+<!-- END Second slider-->
+
+    <!---Third slider-->
+    <div class="container-fluid ">
+        <h2 class="title">Blog</h2>
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row-slide">
+                    {%for blog in blogs%}
+                    <div class="col-md-4">
+                       
+                        <div class="single-blog">
+                            <p class="blog-meta">{{blog.author}}<span></span></p>
+                            <hr>
+                            <img src="{{url_for('static',filename='assets/'+ blog.image)}}" alt="">
+                            <h2><a href="{{url_for('readmoreblog',id=blog.id)}}">{{blog.title}}</a></h2>
+                            <p class="blog-text">{{blog.content}}</p>
+                            <p><a href="{{url_for('readmoreblog',id=blog.id)}}" class="read-more-btn">read more</a></p>
+                            
+                        </div>
+                       
+                        
+                    </div>
+                     {%endfor%}
+                </div>
+              </div>
+              <div class="carousel-item">
+                 <div class="row-slide">
+                        {%for blog in blogs%}
+                      <div class="col-md-4">
+                        
+                        <div class="single-blog">
+                            <p class="blog-meta">{{blog.author}}<span></span></p>
+                            <hr>
+                            <img src="{{url_for('static',filename='assets/'+ blog.image)}}" >
+                            <h2><a href="#">{{blog.title}}</a></h2>
+                            <p class="blog-text">{{blog.content}}</p>
+                            <p><a href="{{url_for('readmoreblog',id=blog.id)}}" class="read-more-btn">read more</a></p>
+                            
+                        </div>
+                      
+                         
+                      </div>
+                      {%endfor%}
+                  </div>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
+    </div>
+
+
+
+
+
+
+
+<br><br><br><br><br>
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,70 @@
+{% extends "page.html" %}
+{% block content%}
+{% include 'navbar.html' %}
+
+    
+<div class="small-container-prod">
+    <div class="row row-2">
+        <h2>Tous les produits</h2>
+    <div class="dropdown ">
+        <button class="btn border dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Tri par marque
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {%for brand in brands%}
+          <a class="dropdown-item" href="{{url_for('get_brand', id=brand.id)}}">{{brand.name}}</a>
+            {%endfor%}
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      {%if brand%}
+      {% for b in brand %}
+
+      <div class="col-4">
+          <a href="{{url_for('detailprod',id=b.id)}}"target=""><img src="{{url_for('static',filename='assets/'+ b.image)}}" class="prodimg" alt="{{b.name}}"></a>
+          <h4>{{ b.name }} {{b.colors}}</h4>
+          <p>{{ b.price }} MAD</p>
+      </div>
+      {% endfor %}
+
+      {%else%}
+       
+      {% for p in products.items %}
+
+        <div class="col-4">
+            <a href="{{url_for('detailprod',id=p.id)}}"target=""><img src="{{url_for('static',filename='assets/'+ p.image)}}" class="prodimg" alt="{{p.name}}"></a>
+            <h4>{{ p.name }} {{p.colors}}</h4>
+            <p>{{ p.price }} MAD</p>
+        </div>
+        {% endfor %}
+        {%endif%}
+      
+    </div>
+   <div class="page-btn">
+       {% if products.has_prev%}
+       <a href="{{url_for('shop',page=products.prev_num)}}"><span>Prec</span></a>
+       {%endif%}
+       {% for page_num in products.iter_pages()%}
+       {%if page_num%}
+       {%if products.page==page_num%}
+       <a href="{{url_for('shop',page=page_num)}}"><span>{{page_num}}</span></a> 
+       {%else%}
+       <a href="{{url_for('shop',page=page_num)}}"><span>{{page_num}}</span></a> 
+       {%endif%}
+       {%else%}
+       ...
+       {%endif%}
+        {%endfor%}
+        {% if products.has_next%}
+        <a href="{{url_for('shop',page=products.next_num)}}"><span>Suiv</span></a>
+        {%endif%}
+       
+   </div>
+
+</div>
+
+
+{% endblock content %}

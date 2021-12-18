@@ -1,0 +1,16 @@
+{% extends "page.html" %}
+{% block content%}
+{% include 'navbar.html' %}
+<link rel="stylesheet" href="/static/css/blog.css">
+<div class="container">
+    <div class="row-blog">
+        <br><br>
+        <h1 class="text-center">{{blog.title}}</h1>
+        <br><br><br>
+        <img src="{{url_for('static',filename='assets/'+ blog.image)}}"  alt="{{blog.image}}">
+        <br><br><br>
+        <p>{{blog.text}}</p>
+    </div>
+</div>
+
+{% endblock content %}

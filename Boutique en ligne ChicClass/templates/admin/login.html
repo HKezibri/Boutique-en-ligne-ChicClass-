@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+{% block content%}
+<!--Custom Stylesheet CSS-->
+<link rel='stylesheet' href='/static/css/admin.css'/>
+
+<div class="container">
+        <br>
+        <h2 class="text-center">Admin Login</h2>
+        <hr>
+        {% from "_formhelpers.html" import render_field %}
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+
+
+    <form method='post' enctype="multipart/form-data">
+        <div>
+        
+          {{ render_field(form.email,class="form-control") }}
+          {{ render_field(form.password,class="form-control") }}
+          {% include '_alertmsg.html'%}
+
+        </div>
+        <p><input type='submit' value='Login' class="mt-2"></p>
+        
+    </form>
+    <a href="{{url_for('register')}}"><button type="" class=" btn-signin btn btn-primary btn-sm">Sign In</button></a> 
+</div>
+<div class="col-md-4"></div>
+
+</div>
+</div>
+{% endblock content %}

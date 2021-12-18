@@ -1,0 +1,24 @@
+{% extends "page.html" %}
+{% block content%}
+{% include 'navbar.html' %}
+
+    
+<div class="small-container-prod">
+    <div class="row row-2">
+       
+        {% for p in products %}
+
+        <div class="col-4">
+            <a href="{{url_for('detailprod',id=p.id)}}"target=""><img src="{{url_for('static',filename='assets/'+ p.image)}}" class="prodimg" alt="{{p.name}}"></a>
+            <h4>{{ p.name }} {{p.colors}}</h4>
+            <p>{{ p.price }} MAD</p>
+        </div>
+        {% endfor %}
+      
+      
+    </div>
+  
+</div>
+
+
+{% endblock content %}

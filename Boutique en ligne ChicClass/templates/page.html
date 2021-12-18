@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if titre %}
+        <title>{{ titre }}</title>
+    {% else %}
+    <title>ChicClass</title>
+    {% endif %}
+    
+    <!--Bootstrap CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <!---Font Awesome CDN-->
+    <script src="https://kit.fontawesome.com/78d1bc9340.js" crossorigin="anonymous"></script>
+    
+    <!--Slick Slider-->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+    <!--Custom Stylesheet CSS-->
+    <link rel='stylesheet' href='/static/css/style.css'/>
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+
+    <header>
+        <div class="container ">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-12 ">
+                   <!-- <div class="btn-groupe">
+                        <button class='btn border dropdown-toggle my-md-4 my-2' data-toggle='dropdown' aria-haspopup="true" aria-expanded="false">English</button>
+                        <div class="dropdown-menu p-2">
+                            <a href="#" class='dropdown-item'>Arabe</a>
+                            <a href="#" class='dropdown-item'>Francais</a>
+                        </div>   
+                    </div>-->
+                </div>
+           
+           <div class="col-md-4 col-12 text-center">
+               <a class='brandlogo' href="/"><img src="/static/assets/logochic2.PNG" class='chicimg' alt=""> </a>
+            </div>
+            <div class="col-md-4 col-12 text-right">
+                <p class='my-md-4 header-links'><br>
+                    <!---<a href="/register" class="px-2"><i class="fas fa-user"></i> <span> se connecter/...</span></a>-->
+                    <div class="btn-groupe-two">
+                        <button class='btn dropdown-toggle ' data-toggle='dropdown' aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i> 
+                        </button>
+                        <div class="dropdown-menu p-2">
+                            {% if current_user.is_authenticated %}
+                                <a href="{{url_for('customer_logout')}}" class='dropdown-item'>{{current_user.name}}</a>
+                                <a href="{{url_for('customer_logout')}}" class='dropdown-item'>Logout</a>
+                            {% else %}
+                                <a href="{{url_for('customer_register')}}" class='dropdown-item'>Sign in</a>
+                                <a href="{{url_for('customerLogin')}}"  class='dropdown-item'>login</a>
+                            {% endif %}
+                        </div>
+                        <a href="/cart" class="cartl px-2"><i class="fas fa-shopping-cart"></i><span id="cart">({{session['Shoppingcart']|length}})</span></a> 
+                    </div>
+                   
+                </p>
+            </div>
+            </div>
+        </div>
+
+    </header>
+    
+    
+<main>
+   
+       
+    {% block content %}
+
+    {% endblock content %}
+    
+
+</main>
+
+
+    <footer>
+        <p class="footerText"> | Created by Me 2020 | ChicClass </p>
+     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src='/static/js/main.js'></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{% extends "page.html" %}
+{% block content%}
+{% include 'navbar.html' %}
+
+<link rel="stylesheet" href="/static/css/prdet.css">
+<!---Single product details-->
+
+<div class="small-container single-product">
+    <div class="row row-3">
+        
+        <div class="col-2">
+            <img src="{{url_for('static',filename='assets/'+ product.image)}}" alt='{{product.name}}'>
+        </div>
+        <div class="col-2">
+            <p> <a href="/shop">Home/</a> {{product.name}} </p>
+            <hr>
+            <h1>{{product.name}} {{product.colors}}</h1>
+            <h4>{{product.price}} MAD</h4>
+            <select name="" id="">
+                <option value="">Select Size</option>
+                <option value="">XXl</option>
+                <option value="">XL</option>
+                <option value="">Large</option>
+                <option value="">Medium</option>
+                <option value="">Small</option>
+            </select>
+            <form action="" method="post">
+                <input type="hidden" name='product_id' value="{{product.id}}">
+                <input type="number" name="qantity"  value='1' min='1' max="{{product.stock}}" class="mt-2">
+
+                {% set colors = product.colors.split(',')%}
+                <!---<label for="colors">Couleurs:</label>-->
+                <select name="colors" >
+                    {%for color in colors%}
+                    {%set col=color.split(':')%}
+                    <option value="{{col[0]}}">{{col[0]|capitalize }}</option>
+                    {%endfor%}
+                </select>
+                <button type="submit" class="btn-s">Ajouter au panier</button>
+                
+            </form>
+            <hr>
+            <h3>Details sur ce produit<i class="fa fa-indent"></i></h3>
+            <br>
+            <p>{{product.desc}}</p>
+            
+        </div>
+    </div>
+</div>
+<!---TITLE-->
+<div class="container">
+    <div class="small-container">
+        <div class="row row-2">
+            <a href="/shop"><p>	&lt;&lt; Retour</p></a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
