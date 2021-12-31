@@ -1,4 +1,4 @@
-# Boutique-en-ligne-ChicClass-\
+# Boutique-en-ligne-ChicClass-
 Septembre 2020 - October 2020
 ## Stage d’initiation développeur Full Stack
 Entreprise: Wings Technologies Casablanca Maroc
